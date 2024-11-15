@@ -8,5 +8,6 @@ def emotion_detector(text_to_analyze):
     data = json.loads(response.text) 
     emotions_dict = data['emotionPredictions'][0]['emotion']
     emotion, score = max(emotions_dict.items(), key= lambda x: x[1])
-    emotions_dict['dominant_emotion'] = emotion
-    return emotions_dict
+    anger, disgust, fear, joy, sadness = emotions_dict.values()
+    return {'anger': anger, 'disgust': disgust, 'fear': fear, 'joy': joy, 'sadness': sadness, 'dominant_emotion': emotion}
+    
